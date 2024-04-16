@@ -10,6 +10,7 @@ To install the package, you can use `pip`:
 $ git clone https://github.com/isavoj/GaussianSpaceCharge.git
 $ cd GaussianSpaceCharge
 $ python setup.py install
+```
 
 ## Description
 The project contains 1 module called `GaussianSpaceCharge`, within which you'll find 4 files:
