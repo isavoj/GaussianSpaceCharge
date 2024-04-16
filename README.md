@@ -4,16 +4,17 @@ This repository contains the implementation of an Analytic Space-Charge Model fo
 
 ## Installation
 
-To install the package, you can use `pip`:
+To install the package, follow the instructions:
 
 ```bash
 $ git clone https://github.com/isavoj/GaussianSpaceCharge.git
 $ cd GaussianSpaceCharge
 
-# (Optional but recommended:)
-# Create and activate a virtual environment:
+# ##########################################
+# (Optional but recommended:) Create and activate a virtual environment:
 $ python -m venv env
 $ source env/bin/activate  # On Windows, use 'env\Scripts\activate'
+# ##########################################
 
 $ python setup.py install
 
