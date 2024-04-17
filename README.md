@@ -28,8 +28,8 @@ $ cd GaussianSpaceCharge
 $ (env) python main.py
 ```
 
-
-## Description
+ ----------------------------------------
+## Project Overview
 
 The project contains 1 module called `GaussianSpaceCharge`, within which you'll find 4 files:
 - `main.py`
@@ -37,16 +37,25 @@ The project contains 1 module called `GaussianSpaceCharge`, within which you'll 
 - `elements.py`
 - `beam.py`
 
-### Space- charge 
-The space charge calculation code is implemented in `space_charge_calc.py`. The main function `calculate_matrix_T(covariance_matrix, ds)` computes the T matrix, which includes two versions: one with and one without the `x2_f1` and `x4_f3` terms.
-comment them out depending on. 
-### Execution
-Run `main.py`. When you execute this script, the `main()` function is called, which in turn invokes the important function `propagate_beam_through_lattice()`. This function iterates over each sliced element (quadrupole and drift) four our (FODO cell)*4 and calculates the space charge for each slice.
+When you run `main.py`, the `main()` function is invoked, which in turn calls the function `propagate_beam_through_lattice()`. This function iterates over each sliced element (divided by 2 to apply Space Charge (SC) more accurately) in a series of FODO cells and calculates the space charge effects for each slice.
 
-### Modifying additional parameters
-1. To change beam parameters, modify the `beam_perveance` function in `beam.py`.
-2. The creation of Gaussian and KV distributions is also in the `beam.py` script.
-3. Twiss parameters and lattice are adjusted in the main function of this script.
-4. To adjust the standard deviation and cutoff value of the Gaussian distribution, modify the `factor` and `cut_off` parameters in the main function of this script.
+### Main Steps in `main()` Function
+
+The process within the `main()` function includes the following key steps:
+- **Defining the Lattice Configuration and Properties**: Setup the layout and parameters of the lattice elements used in the simulation.
+- **Setting Up the Twiss Parameters for the Beam**: (alpa_x, beta_x, eps_x + y )
+- **Configuring the Standard Deviation (SD) and Cutoff for the Gaussian Distribution**: These parameters are used to initialize phase space coordinates.
+- **Calculating the Initial Covariance Matrix (`sigma`)**: Derived from the phase space coordinates to represent the beam's initial state.
+- **Propagating the Beam Through the Lattice**: The beam is moved through the lattice, applying space charge effects at each step.
+- **Plotting the Resulting Beam Envelope**: Visual representation of the beam's evolution throughout the lattice.
+
+### Customization Options
+
+To customize other parts of the simulation:
+1. **Beam Parameters**: Change beam parameters like perveance by modifying the `beam_perveance` function in `beam.py`.
+2. **Distribution Adjustments**: Adjust the Gaussian and KV distributions directly within `beam.py`.
+
+----------------------------------------
+
 
 
