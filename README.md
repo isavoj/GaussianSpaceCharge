@@ -11,22 +11,20 @@ $ git clone https://github.com/isavoj/GaussianSpaceCharge.git
 $ cd GaussianSpaceCharge
 ```
 
-(Optional but recommended:) 
+(Optional step, but recommended:) 
 Create and activate a virtual environment:
 ```bash
 $ python -m venv env
 $ source env/bin/activate  # On Windows, use 'env\Scripts\activate'
 ```
-
+Now, 
 ```bash
 $ python setup.py install
 ```
 
-```
-
-# Run the main script:
+## Run the main script:
 ```bash
-$ python main.py
+$ (env) python main.py
 ```
 
 ## Description
