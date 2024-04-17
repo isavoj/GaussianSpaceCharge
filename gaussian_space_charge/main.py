@@ -47,7 +47,7 @@ def propagate_beam_through_lattice(sigma, lattice, lattice_dict):
     for element in lattice:
         element_obj, L_element, split_element = lattice_dict[element]
         ds = L_element / (2 * split_element)  # Calculate slice length
-        split_element = int(split_element)  # Ensure split_element is an integer
+        split_element = int(split_element)  
 
         for _ in range(split_element):
 
