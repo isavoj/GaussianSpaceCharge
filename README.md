@@ -37,24 +37,53 @@ The project contains 1 module called `GaussianSpaceCharge`, within which you'll 
 - `elements.py`
 - `beam.py`
 
-When you run `main.py`, the `main()` function is invoked, which in turn calls the function `propagate_beam_through_lattice()`. This function iterates over each sliced element (divided by 2 to apply Space Charge (SC) more accurately) in a series of FODO cells and calculates the space charge effects for each slice.
+All space charge (SC) calculations are handled within the `space_charge_calc.py` file,containing:  
+- **`NonLinearSc` Class**
+- **`calculate_T_components_linear` Function**
+- **`calculate_matrix_T` Function**
 
-### Main Steps in `main()` Function
+All relevant Parameters are changed in `main()` in `main.py`
 
-The process within the `main()` function includes the following key steps:
-- **Defining the Lattice Configuration and Properties**: Setup the layout and parameters of the lattice elements used in the simulation.
-- **Setting Up the Twiss Parameters for the Beam**: (alpa_x, beta_x, eps_x + y )
-- **Configuring the Standard Deviation (SD) and Cutoff for the Gaussian Distribution**: These parameters are used to initialize phase space coordinates.
-- **Calculating the Initial Covariance Matrix (`sigma`)**: Derived from the phase space coordinates to represent the beam's initial state.
-- **Propagating the Beam Through the Lattice**: The beam is moved through the lattice, applying space charge effects at each step.
-- **Plotting the Resulting Beam Envelope**: Visual representation of the beam's evolution throughout the lattice.
+Except for : 
+1. **Perveance**: Change beam parameters for perveance by modifying the `beam_perveance` function in `beam.py`.
+2. **SC -T matrix**: Adjust the T matrix in `space_charge_calc.py`, there are 2 now, 1 uncommented that includes the **problematic `x4_f3` and `x2_f1 terms`**
+   
+## Overview 
 
-### Customization Options
+When you run `main.py`, the `main()` function is invoked, 
+which in turn calls the function `propagate_beam_through_lattice()`. 
+This function iterates over each sliced element (divided by 2 to apply Space Charge (SC) more accurately) in a series of FODO cells and calculates the space charge effects for each slice.
 
-To customize other parts of the simulation:
-1. **Beam Parameters**: Change beam parameters like perveance by modifying the `beam_perveance` function in `beam.py`.
-2. **Distribution Adjustments**: Adjust the Gaussian and KV distributions directly within `beam.py`.
+```plaintext
++------------------------------------------------------+
+|                        main()                        |
+|  +-----------------------------------------------+   |
+|  | Define lattice configuration and properties  |    |
+|  | Set up Twiss parameters                      |    |
+|  | Configure SD and cutoff for Gaussian dist.   |    |
+|  | Calculate initial covariance matrix (sigma)  |    |
+|  | * Propagate beam through lattice             |    |
+|  | Plot resulting beam envelope                 |    |
+|  +-----------------------------------------------+   |
++------------------------------------------------------+
+                     |                                 | 
+                     v                                 |
+          +-----------------------------------+        |
+          | * propagate_beam_through_lattice() |       |
+          |   +---------------------------+    |       |
+          |   | Iterate over elements     |    |       |
+          |   |   + Calculate transport   |    |       |
+          |   |   + **Apply space charge  |  |       |
+          |   |   + Complete step         |    |       |
+          |   +---------------------------+    |       |
+          +-----------------------------------+        |
+                     |                                 |
+                     v                                 |
+         +----------------------------+                |                                          
+         | **space_charge_calc.calculate_matrix_T()    |
+         +----------------------------+
 
+```
 ----------------------------------------
 
 
