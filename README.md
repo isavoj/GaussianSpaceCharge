@@ -24,6 +24,7 @@ $ python setup.py install
 
 ## Run the main script:
 ```bash
+$ cd GaussianSpaceCharge
 $ (env) python main.py
 ```
 
