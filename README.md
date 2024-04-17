@@ -86,5 +86,14 @@ This function iterates over each sliced element (divided by 2 to apply Space Cha
 ```
 ----------------------------------------
 
+## Issue: 
+The  `x4_f3` and `x2_f1` terms in the T- matrix seem to cause problems for me. Why? 
+Because when I run with homogenous space charge terms, hence space-charge matrix for KV-distrbution, I get something very similar
+
+# Example Plot
+
+This plot shows a simple relationship between x and y. The line graph demonstrates how y increases as x increases.
+
+
 
 
