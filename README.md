@@ -41,11 +41,12 @@ The project contains 1 module called `GaussianSpaceCharge`, within which you'll 
 The space charge calculation code is implemented in `space_charge_calc.py`. The main function `calculate_matrix_T(covariance_matrix, ds)` computes the T matrix, which includes two versions: one with and one without the `x2_f1` and `x4_f3` terms.
 comment them out depending on. 
 ### Execution
-Run `main.py`. When you execute this script, the `main()` function is called, which in turn invokes the important function `propagate_beam_through_lattice()`. This function iterates over each sliced element (quadrupole and drift) and calculates the space charge for each slice.
+Run `main.py`. When you execute this script, the `main()` function is called, which in turn invokes the important function `propagate_beam_through_lattice()`. This function iterates over each sliced element (quadrupole and drift) four our (FODO cell)*4 and calculates the space charge for each slice.
+
 ### Modifying additional parameters
 1. To change beam parameters, modify the `beam_perveance` function in `beam.py`.
 2. The creation of Gaussian and KV distributions is also in the `beam.py` script.
-3. Twiss parameters are adjusted in the main function of this script.
+3. Twiss parameters and lattice are adjusted in the main function of this script.
 4. To adjust the standard deviation and cutoff value of the Gaussian distribution, modify the `factor` and `cut_off` parameters in the main function of this script.
 
 
