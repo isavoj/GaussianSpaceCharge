@@ -9,15 +9,24 @@ To install the package, follow the instructions:
 ```bash
 $ git clone https://github.com/isavoj/GaussianSpaceCharge.git
 $ cd GaussianSpaceCharge
+```
 
-# (Optional but recommended:) ##############
-#  Create and activate a virtual environment:
+(Optional but recommended:) 
+Create and activate a virtual environment:
+```bash
 $ python -m venv env
 $ source env/bin/activate  # On Windows, use 'env\Scripts\activate'
-# ##########################################
+```
 
+```bash
 $ python setup.py install
+```
 
+```
+
+# Run the main script:
+```bash
+$ python main.py
 ```
 
 ## Description
