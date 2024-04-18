@@ -90,11 +90,11 @@ This function iterates over each sliced element (divided by 2 to apply Space Cha
 The  `x4_f3` and `x2_f1` terms in the T- matrix seem to cause problems for me. Why? 
 Because when I run with homogenous space charge terms, hence space-charge matrix for KV-distrbution, I get something very similar
 
-# PLOTS WITHOUT `x4_f3` and `x2_f1` terms  (with homogenous linear space-charge matrix and  non-homogenous linear space-charge terms)
-KV distribution
+### PLOTS WITHOUT `x4_f3` and `x2_f1` terms  (with homogenous linear space-charge matrix and  non-homogenous linear space-charge terms)
+#### KV distribution
 ![Example Plot](KV_WO.png)
 
-Gaussian distribution
+#### Gaussian distribution
 ![Example Plot](Gauss_WO.png)
 
 
