@@ -97,6 +97,15 @@ Because when I run with homogenous space charge terms, hence space-charge matrix
 #### Gaussian distribution
 ![Example Plot](Gauss_WO.png)
 
+### PLOTS WITH `x4_f3` and `x2_f1` terms  (with homogenous linear space-charge matrix and  non-homogenous linear space-charge terms)
+
+
+#### KV distribution
+![Example Plot](KV_WO.png)
+
+#### Gaussian distribution
+![Example Plot](Gauss_WO.png)
+
 
 
 
