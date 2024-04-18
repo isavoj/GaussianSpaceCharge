@@ -4,9 +4,12 @@ import math
 from beam import Beam
 
 
-"""Class for NonLinear space charge calculations and 
+"""
+Class for NonLinear space charge calculations and 
 two standalone functions for Linear space charge 
-and calculation of the T matrix."""
+and calculation of the T matrix.
+"""
+
 class NonLinearSc:
 
     @staticmethod
@@ -17,7 +20,7 @@ class NonLinearSc:
 
     @staticmethod
     def S12(sigma, n, c, d):
-        term1 = 2.0 / n * sigma[0, 0] * c[0] * d[0] + sigma[2, 2] * c[1] * d[1] + sigma[0, 2] * (c[0] * d[1] + c[1] * d[0])
+        term1 = 2.0 / n * (sigma[0, 0] * c[0] * d[0] + sigma[2, 2] * c[1] * d[1] + sigma[0, 2] * (c[0] * d[1] + c[1] * d[0]))
         return term1
 
     @staticmethod
@@ -73,10 +76,12 @@ class NonLinearSc:
 
 
 def calculate_T_components_linear( sigma_k1, sigma_k3, sigma11, sigma33, sigma13):
+
     denominator = 2 * (sigma11 - sigma33 + 2j * sigma13)
     inner_term_numerator = sigma_k1 * (sigma33 - 1j * sigma13) + 1j * sigma_k3 * (sigma11 + 1j * sigma13)
     inner_term_denominator = cmath.sqrt(sigma11 * sigma33 - sigma13 ** 2)
     result = (1j / denominator) * (sigma_k1 + 1j * sigma_k3 - inner_term_numerator / inner_term_denominator)
+
     return result.imag, result.real
 
 def calculate_matrix_T(covariance_matrix, ds):
@@ -105,22 +110,24 @@ def calculate_matrix_T(covariance_matrix, ds):
         f1_squared = FOFO / 2
         f1_f3 = 0
 
-        # WITH the x2_f1 term and the x4_f3 term.
+        #WITH the x2_f1 term and the x4_f3 term.
 
+        T = np.array([
+            [0, K * x1_f1, 0, K * x1_f3],
+            [0, K * 2 * x2_f1 + K ** 2 * f1_squared, K * x3_f1, K ** 2 * f1_f3 + K * x2_f3 + K * x4_f1],
+            [0, 0, 0, K * x3_f3],
+            [0, 0, 0, K * 2 * x4_f3 + K ** 2 * f3_squared]
+        ])
+
+
+        # #WITHOUT the x2_f1 term and the x4_f3 term.
         # T = np.array([
         #     [0, K * x1_f1, 0, K * x1_f3],
-        #     [0, K * 2 * x2_f1 + K ** 2 * f1_squared, K * x3_f1, K ** 2 * f1_f3 + K * x2_f3 + K * x4_f1],
+        #     [0, K ** 2 * f1_squared, K * x3_f1, K ** 2 * f1_f3 + K * x2_f3 + K * x4_f1],
         #     [0, 0, 0, K * x3_f3],
-        #     [0, 0, 0, K * 2 * x4_f3 + K ** 2 * f3_squared]
+        #     [0, 0, 0, K ** 2 * f3_squared]
         # ])
 
 
-        # WITHOUT the x2_f1 term and the x4_f3 term.
-        T = np.array([
-            [0, K * x1_f1, 0, K * x1_f3],
-            [0, K ** 2 * f1_squared, K * x3_f1, K ** 2 * f1_f3 + K * x2_f3 + K * x4_f1],
-            [0, 0, 0, K * x3_f3],
-            [0, 0, 0, K ** 2 * f3_squared]
-        ])
 
         return T
