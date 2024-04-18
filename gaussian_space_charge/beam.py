@@ -61,7 +61,7 @@ class Beam:
         """
         Calculate the perveance of the beam according to paper
         """
-        cls.N = 5e13
+        cls.N = 3e13
         e = 1.602176634 * 1e-19
         c = 3e8
         e_kin_ini = 5.0
